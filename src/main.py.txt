@@ -1,0 +1,40 @@
+# ==========================================
+# Proyecto: Mapa de Conocimiento
+# Integrantes: Samuel López Jiménez, Santiago Osorio Bedoya
+# Profesor: Carlos Castro
+# ==========================================
+
+class NodoConocimiento:
+    def __init__(self, id_concepto, titulo, descripcion):
+        self.id_concepto = id_concepto
+        self.titulo = titulo
+        self.descripcion = descripcion
+        self.conexiones = [] # Lista para almacenar conceptos relacionados
+
+    def agregar_conexion(self, concepto):
+        if concepto not in self.conexiones:
+            self.conexiones.append(concepto)
+
+    def __str__(self):
+        relaciones = ", ".join([c.titulo for c in self.conexiones]) if self.conexiones else "Ninguna"
+        return f"[{self.id_concepto}] {self.titulo}: {self.descripcion} | Conectado con: [{relaciones}]"
+
+def main():
+    print("=== Sistema de Mapa de Conocimiento Inicializado ===")
+    
+    # Creación de conceptos de prueba para el mapa
+    c1 = NodoConocimiento(1, "Paradigmas de Programación", "Estilos y enfoques de diseño de software.")
+    c2 = NodoConocimiento(2, "Programación Orientada a Objetos", "Paradigma basado en clases y objetos.")
+    c3 = NodoConocimiento(3, "Control de Versiones", "Herramientas como Git y GitHub para rastrear cambios.")
+
+    # Establecer relaciones (Mapa de Conocimiento)
+    c1.agregar_conexion(c2)
+    c2.agregar_conexion(c3)
+
+    # Mostrar el mapa
+    print(c1)
+    print(c2)
+    print(c3)
+
+if __name__ == "__main__":
+    main()
